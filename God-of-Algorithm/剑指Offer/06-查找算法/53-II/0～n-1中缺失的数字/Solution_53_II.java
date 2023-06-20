@@ -10,7 +10,28 @@
  */
 public class Solution_53_II {
 
+    /**
+     *
+     */
     public int missingNumber(int[] nums) {
-        return -1;
+        // 边界条件
+        if (nums == null || nums.length <= 0) {
+            return -1;
+        }
+        // 声明左右指针
+        int left = 0;
+        int right = nums.length - 1;
+        while (left < right) {
+            // 取 mid 值
+            int mid = left + (right - left) / 2;
+            // 如果 nums[mid] == mid，表示缺失的数字在右侧
+            if (nums[mid] == mid) {
+                left = mid + 1;
+            } else { //  缺失的数字在左侧
+                right = mid;
+            }
+        }
+        // 如果 nums[left] == left 代表数组元素不缺元素
+        return nums[left] == left ? left + 1 : left;
     }
 }

@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author lipan
  * <p>
@@ -10,20 +13,21 @@
  */
 class Solution_07 {
 
-    HashMap<Integer, Integer> hashMap;
+    Map<Integer, Integer> hashMap;
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder == null || preorder.length == 0 || inorder == null || inorder.length == 0){
+        if (preorder == null || preorder.length == 0 || inorder == null || inorder.length == 0) {
             return null;
         }
         hashMap = new HashMap();
-        for(int i = 0; i < inorder.length; i++){
+        for (int i = 0; i < inorder.length; i++) {
             hashMap.put(inorder[i], i);
         }
         return buildTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
     }
 
-    private TreeNode buildTree(int[] preorder, int l1, int r1, int[] inorder, int l2, int r2){
-        if(l1 > r1 && l2 > r2){
+    private TreeNode buildTree(int[] preorder, int l1, int r1, int[] inorder, int l2, int r2) {
+        if (l1 > r1 && l2 > r2) {
             return null;
         }
         // 前序遍历的头节点即为根节点
@@ -38,14 +42,24 @@ class Solution_07 {
         return root;
     }
 
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
 }
 
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode(int x) { val = x; }
  * }
  */
